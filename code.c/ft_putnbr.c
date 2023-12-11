@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 13:46:35 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/11 20:58:37 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/11 21:04:57 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/11 21:05:54 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-#endif FT_PRINTF_H
+#include "ft_printf.h"
+
+void	ft_putnbr(int n)
+{
+	char	temp;
+
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	else if (n < 0)
+	{
+		write(1, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		n = n % 10;
+	}
+	if (n < 10)
+	{
+		temp = n + '0';
+		write(1, &temp, 1);
+	}
+}
