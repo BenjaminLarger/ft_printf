@@ -1,4 +1,4 @@
-SRC = $(wildcard *.h */*.c)
+SRC = $(wildcard *.c */*.c)
 OBJ = $(SRC:%.c=%.o)
 NAME = libftprintf.a
 CC = cc
@@ -10,10 +10,12 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(CFLAGS)
+	ar rcs $(NAME) $(OBJ)
 
+$(OBJ): %.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 clean:
-	$(RM) $(SRC) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)

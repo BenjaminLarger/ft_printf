@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   8.ft_putnbr_dec_unsigned.c                         :+:      :+:    :+:   */
+/*   6_ft_putnbr_dec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 11:27:50 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 13:32:14 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/13 10:44:09 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/13 15:09:18 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
 int	ft_len_int(int n)
 {
@@ -30,16 +30,19 @@ int	ft_len_int(int n)
 	return (count);
 }
 
-int	ft_putnbr_dec_unsigned(float n)
+int	ft_putnbr_dec(float n)
 {
 	int		integer_part;
 	float	decimal_part;
 	int		round_decimal;
 	int		len;
 
+	len = ft_len_int((int)ft_len_int);
 	if (n < 0)
-		return (0);
-	len = ft_len_int(n);
+	{
+		ft_putchar('-');
+		n = n * -1;
+	}
 	integer_part = (int)n;
 	ft_putnbr(integer_part);
 	decimal_part = n - integer_part;
@@ -55,6 +58,5 @@ int	ft_putnbr_dec_unsigned(float n)
 
 /* int main()
 {
-	float num = 0.34;
-	ft_putnbr_dec_unsigned(num);
+	ft_putnbr_dec(-0.35);
 } */

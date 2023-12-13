@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   10_ft_print_hex_upp.c                              :+:      :+:    :+:   */
+/*   5_ft_ptr_to_hex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 11:57:52 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 13:35:06 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/12 12:24:48 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/13 15:13:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
 int	get_hex_len(unsigned long long str)
 {
@@ -27,7 +27,7 @@ int	get_hex_len(unsigned long long str)
 	return (count);
 }
 
-char	*conv_to_hex_upp(int hex_len, unsigned long long ptr_val, char *hex_str)
+char	*convert_to_hex(int hex_len, unsigned long long ptr_val, char *hex_str)
 {
 	int	i;
 	int	res;
@@ -40,25 +40,30 @@ char	*conv_to_hex_upp(int hex_len, unsigned long long ptr_val, char *hex_str)
 		if (res < 10)
 			hex_str[i] = '0' + res;
 		else
-			hex_str[i] = 'A' + (res - 10);
+			hex_str[i] = 'a' + (res - 10);
 		ptr_val = ptr_val / 16;
 		i--;
 	}
 	hex_str[hex_len] = '\0';
+	printf("hex_str =%s\n", hex_str);
 	return (hex_str);
 }
 
-int	ft_print_hex_low(unsigned long long decimal)
+int	ft_ptr_to_hex(void *str)
 {
-	int					i;
 	int					hex_len;
+	unsigned long long	ptr_val;
 	char				*hex_str;
 
-	hex_len = get_hex_len(decimal);
+	if (!str)
+		return (0);
+	hex_len = get_hex_len((unsigned long long)str);
 	hex_str = malloc((hex_len + 1) * sizeof(char));
 	if (!hex_str)
-		return ;
-	conv_to_hex_upp(hex_len, decimal, hex_str);
+		return (0);
+	ptr_val = (unsigned long long)str;
+	convert_to_hex(hex_len, ptr_val, hex_str);
+	ft_putstr("Ox");
 	ft_putstr(hex_str);
 	free(hex_str);
 	return (hex_len);
@@ -66,5 +71,6 @@ int	ft_print_hex_low(unsigned long long decimal)
 
 /* int main()
 {
-	ft_print_hex_low(15);
+	char *str = "Hello World";
+	ft_ptr_to_hex(str);
 } */

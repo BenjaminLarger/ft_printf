@@ -1,42 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1.ft_printf.c                                      :+:      :+:    :+:   */
+/*   1_ft_printf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:23:15 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 13:13:03 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:12:27 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
-int	input_type(char c, va_list input)
-{
-	if (c == 'c')
-		return (ft_putchar(input));
-	else if (c == 's')
-		return (ft_putstr(input));
-	else if (c == 'p')
-		return (ft_ptr_to_hex(input));
-	else if (c == 'd')
-		return (ft_putnbr_dec(input));
-	else if (c == 'i')
-		return (ft_putnbr(input));
-	else if (c == 'u')
-		return (ft_putnbr_dec_unsigned(input));
-	else if (c == 'x')
-		return (ft_print_hex_low(input));
-	else if (c == 'X')
-		return (ft_print_hex_upp(input));
-	else if (c == '%')
-		return (ft_putchar('%'));
-	else
-		return (NULL);
-}
-
-int	count_par(char *str)
+/* int	count_par(char *str)
 {
 	int	i;
 	int	count;
@@ -52,7 +28,8 @@ int	count_par(char *str)
 		}
 		i++;
 	}
-}
+	return (count);
+} */
 
 int	is_valid(char *str)
 {
@@ -66,7 +43,7 @@ int	is_valid(char *str)
 	return (1);
 }
 
-int	*ft_printf(char *str, ...)
+int	ft_printf(char *str, ...)
 {
 	int		i;
 	int		len;

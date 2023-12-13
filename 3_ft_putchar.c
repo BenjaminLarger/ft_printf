@@ -1,43 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   3_ft_putchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 17:21:17 by blarger           #+#    #+#             */
-/*   Updated: 2023/11/29 08:44:07 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/11 21:01:39 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/13 15:09:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "lib_ft_printf.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_putchar(int c)
 {
-	char	*ptr;
-	size_t	i;
-
-	i = 0;
-	while (s1[i] != '\0')
-		i++;
-	ptr = (char *)malloc((i + 1) * sizeof(char));
-	if (!ptr)
-		return (0);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	write(1, &c, 1);
+	return (1);
 }
-
-/* int main()
-{
-	char str[] = "string";
-	char *dup;
-	dup = ft_strdup(str);
-	printf("%s", dup);
-} */

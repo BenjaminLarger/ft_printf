@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   6.ft_putnbr_dec.c                                  :+:      :+:    :+:   */
+/*   7_ft_putnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 10:44:09 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 13:28:00 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/11 21:04:57 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/13 15:14:48 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
 int	ft_len_int(int n)
 {
@@ -30,33 +30,31 @@ int	ft_len_int(int n)
 	return (count);
 }
 
-int	ft_putnbr_dec(float n)
+int	ft_putnbr(int n)
 {
-	int		integer_part;
-	float	decimal_part;
-	int		round_decimal;
+	char	temp;
 	int		len;
 
-	len = ft_len_int((int)ft_len_int);
-	if (n < 0)
+	len = ft_len_int(n);
+	if (n == -2147483648)
 	{
-		ft_putchar('-');
-		n = n * -1;
+		write(1, "-2147483648", 11);
+		return (len);
 	}
-	integer_part = (int)n;
-	ft_putnbr(integer_part);
-	decimal_part = n - integer_part;
-	round_decimal = (int)(decimal_part * 10 + 0.5);
-	if (round_decimal > 0)
+	else if (n < 0)
 	{
-		len++;
-		ft_putchar('.');
-		ft_putnbr(round_decimal);
+		write(1, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		n = n % 10;
+	}
+	if (n < 10)
+	{
+		temp = n + '0';
+		write(1, &temp, 1);
 	}
 	return (len);
 }
-
-/* int main()
-{
-	ft_putnbr_dec(-0.35);
-} */

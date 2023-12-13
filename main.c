@@ -6,14 +6,14 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:57:19 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/11 14:06:52 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:16:00 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
-int	main(int argc, char **argv[])
+int	main(int argc, char **argv)
 {
 	int	i;
 

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   7.ft_putnbr.c                                      :+:      :+:    :+:   */
+/*   8_ft_putnbr_dec_unsigned.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 21:04:57 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 13:30:23 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/13 11:27:50 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/13 15:09:16 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
 int	ft_len_int(int n)
 {
@@ -30,31 +30,31 @@ int	ft_len_int(int n)
 	return (count);
 }
 
-int	ft_putnbr(int n)
+int	ft_putnbr_dec_unsigned(float n)
 {
-	char	temp;
+	int		integer_part;
+	float	decimal_part;
+	int		round_decimal;
 	int		len;
 
-	len = ft_len(n);
-	if (n == -2147483648)
+	if (n < 0)
+		return (0);
+	len = ft_len_int(n);
+	integer_part = (int)n;
+	ft_putnbr(integer_part);
+	decimal_part = n - integer_part;
+	round_decimal = (int)(decimal_part * 10 + 0.5);
+	if (round_decimal > 0)
 	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	else if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr(n / 10);
-		n = n % 10;
-	}
-	if (n < 10)
-	{
-		temp = n + '0';
-		write(1, &temp, 1);
+		len++;
+		ft_putchar('.');
+		ft_putnbr(round_decimal);
 	}
 	return (len);
 }
+
+/* int main()
+{
+	float num = 0.34;
+	ft_putnbr_dec_unsigned(num);
+} */

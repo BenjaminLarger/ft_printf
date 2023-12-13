@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   5.ft_print_ptr.c                                   :+:      :+:    :+:   */
+/*   9_ft_print_hex_low.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 12:24:48 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 13:16:32 by blarger          ###   ########.fr       */
+/*   Created: 2023/12/13 11:44:34 by blarger           #+#    #+#             */
+/*   Updated: 2023/12/13 15:15:11 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "lib_ft_printf.h"
 
 int	get_hex_len(unsigned long long str)
 {
@@ -22,7 +22,7 @@ int	get_hex_len(unsigned long long str)
 	while (str)
 	{
 		count++;
-		str >>= 4; // 2 puissance 4 = 16 => bitewise shift
+		str >>= 4;
 	}
 	return (count);
 }
@@ -45,26 +45,19 @@ char	*convert_to_hex(int hex_len, unsigned long long ptr_val, char *hex_str)
 		i--;
 	}
 	hex_str[hex_len] = '\0';
-	printf("hex_str =%s\n", hex_str);
 	return (hex_str);
 }
 
-int	ft_ptr_to_hex(void *str)
+int	ft_print_hex_low(unsigned long long decimal)
 {
-	int					i;
 	int					hex_len;
-	unsigned long long	ptr_val;
 	char				*hex_str;
 
-	if (!str)
-		return ;
-	hex_len = get_hex_len((unsigned long long)str);
+	hex_len = get_hex_len(decimal);
 	hex_str = malloc((hex_len + 1) * sizeof(char));
 	if (!hex_str)
-		return ;
-	ptr_val = (unsigned long long)str;
-	convert_to_hex(hex_len, ptr_val, hex_str);
-	ft_putstr("Ox");
+		return (0);
+	convert_to_hex(hex_len, decimal, hex_str);
 	ft_putstr(hex_str);
 	free(hex_str);
 	return (hex_len);
@@ -72,6 +65,5 @@ int	ft_ptr_to_hex(void *str)
 
 /* int main()
 {
-	char *str = "Hello World";
-	ft_ptr_to_hex(str);
+	ft_print_hex_low(16);
 } */
