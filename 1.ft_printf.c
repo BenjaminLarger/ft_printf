@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:23:15 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 12:13:26 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:13:03 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	input_type(char c, void *input)
+int	input_type(char c, va_list input)
 {
 	if (c == 'c')
 		return (ft_putchar(input));
@@ -54,7 +54,7 @@ int	count_par(char *str)
 	}
 }
 
-int	is_valid(char *str)	//What about the whitespaces? 1< n prints?, "first_print"        "second print" ; What about the flags character(+,-,#...)
+int	is_valid(char *str)
 {
 	int	i;
 
@@ -66,30 +66,26 @@ int	is_valid(char *str)	//What about the whitespaces? 1< n prints?, "first_print
 	return (1);
 }
 
-char	*ft_printf(char *str, ...)
+int	*ft_printf(char *str, ...)
 {
 	int		i;
-	char	*arg;
-	int		n;
+	int		len;
 	va_list	args;
 
+	len = 0;
+	va_start(args, str);
 	i = 0;
-	if (is_valid(str) == 0)
-		return (NULL);
-	n = count_par(str);
-	va_start(args, n);
-	i = 0;
-	while (i < n)
+	while (str[i] != '\0')
 	{
-		while (str[i] != '\0')
+		if (str[i] == '%')
+			len += input_type(str[i++], args);
+		else
 		{
-			arg = va_arg(args, char *);
-			if (str[i] == '%')
-				return (input_type(str[i++], arg));
-			else
-				ft_putchar(str[i]);	//what happen if it is not printable ? What about the whitespaces ?...
-			i++;
+			ft_putchar(str[i]);
+			len++;
 		}
+		i++;
 	}
 	va_end(args);
+	return (len);
 }

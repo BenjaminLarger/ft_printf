@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:44:34 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 11:58:54 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:32:51 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_hex_len(unsigned long long str)
 	while (str)
 	{
 		count++;
-		str >>= 4; // 2 puissance 4 = 16 => bitewise shift
+		str >>= 4;
 	}
 	return (count);
 }
@@ -48,7 +48,7 @@ char	*convert_to_hex(int hex_len, unsigned long long ptr_val, char *hex_str)
 	return (hex_str);
 }
 
-void	ft_print_hex_low(unsigned long long decimal)
+int	ft_print_hex_low(unsigned long long decimal)
 {
 	int					i;
 	int					hex_len;
@@ -57,10 +57,11 @@ void	ft_print_hex_low(unsigned long long decimal)
 	hex_len = get_hex_len(decimal);
 	hex_str = malloc((hex_len + 1) * sizeof(char));
 	if (!hex_str)
-		return ;
+		return (0);
 	convert_to_hex(hex_len, decimal, hex_str);
 	ft_putstr(hex_str);
 	free(hex_str);
+	return (hex_len);
 }
 
 /* int main()

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:24:48 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 10:39:34 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:16:32 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*convert_to_hex(int hex_len, unsigned long long ptr_val, char *hex_str)
 	return (hex_str);
 }
 
-void	ft_ptr_to_hex(void *str)
+int	ft_ptr_to_hex(void *str)
 {
 	int					i;
 	int					hex_len;
@@ -67,6 +67,7 @@ void	ft_ptr_to_hex(void *str)
 	ft_putstr("Ox");
 	ft_putstr(hex_str);
 	free(hex_str);
+	return (hex_len);
 }
 
 /* int main()
