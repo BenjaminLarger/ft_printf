@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1.input.c                                          :+:      :+:    :+:   */
+/*   1.ft_printf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:23:15 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/11 21:10:11 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 12:13:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*input_type(char c, void *input)
+void	input_type(char c, void *input)
 {
 	if (c == 'c')
 		return (ft_putchar(input));
 	else if (c == 's')
 		return (ft_putstr(input));
 	else if (c == 'p')
-		return (print_ptr(input));
+		return (ft_ptr_to_hex(input));
 	else if (c == 'd')
 		return (ft_putnbr_dec(input));
 	else if (c == 'i')
 		return (ft_putnbr(input));
 	else if (c == 'u')
-		return (print_dec_base_unsigned_10(input));
+		return (ft_putnbr_dec_unsigned(input));
 	else if (c == 'x')
-		return (print_hex_low(input));
+		return (ft_print_hex_low(input));
 	else if (c == 'X')
-		return (print_hex_upp(input));
+		return (ft_print_hex_upp(input));
 	else if (c == '%')
 		return (ft_putchar('%'));
 	else
@@ -54,7 +54,7 @@ int	count_par(char *str)
 	}
 }
 
-int	is_valid(char *str)
+int	is_valid(char *str)	//What about the whitespaces? 1< n prints?, "first_print"        "second print" ; What about the flags character(+,-,#...)
 {
 	int	i;
 
@@ -81,13 +81,13 @@ char	*ft_printf(char *str, ...)
 	i = 0;
 	while (i < n)
 	{
-		while (str[i] != 34)
+		while (str[i] != '\0')
 		{
 			arg = va_arg(args, char *);
 			if (str[i] == '%')
 				return (input_type(str[i++], arg));
 			else
-				ft_putchar(str[i]);
+				ft_putchar(str[i]);	//what happen if it is not printable ? What about the whitespaces ?...
 			i++;
 		}
 	}
