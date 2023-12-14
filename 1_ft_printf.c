@@ -6,23 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:23:15 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/14 12:38:00 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:47:12 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	is_valid(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != 34 && str[i] != '\0')
-		i++;
-	if (str[i] == '\0' || str[0] != 34)
-		return (0);
-	return (1);
-}
 
 int	ft_printf(const char *str, ...)
 {
@@ -36,9 +24,7 @@ int	ft_printf(const char *str, ...)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
-		{
 			len += input_type(str[++i], args);
-		}
 		else
 		{
 			ft_putchar(str[i]);
