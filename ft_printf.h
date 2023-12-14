@@ -6,14 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:46:35 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/14 12:31:02 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:57:03 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <limits.h>
-# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <unistd.h>
