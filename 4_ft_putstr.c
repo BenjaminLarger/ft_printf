@@ -6,16 +6,21 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:02:49 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 15:09:19 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/13 18:41:06 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *str)
 {
 	int	i;
 
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (str[i] != '\0')
 	{

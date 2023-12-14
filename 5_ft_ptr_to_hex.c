@@ -6,48 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:24:48 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 15:13:41 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 11:53:38 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_ft_printf.h"
-
-int	get_hex_len(unsigned long long str)
-{
-	int	count;
-
-	count = 0;
-	if (!str)
-		return (0);
-	while (str)
-	{
-		count++;
-		str >>= 4;
-	}
-	return (count);
-}
-
-char	*convert_to_hex(int hex_len, unsigned long long ptr_val, char *hex_str)
-{
-	int	i;
-	int	res;
-
-	res = 0;
-	i = hex_len - 1;
-	while (i >= 0)
-	{
-		res = ptr_val % 16;
-		if (res < 10)
-			hex_str[i] = '0' + res;
-		else
-			hex_str[i] = 'a' + (res - 10);
-		ptr_val = ptr_val / 16;
-		i--;
-	}
-	hex_str[hex_len] = '\0';
-	printf("hex_str =%s\n", hex_str);
-	return (hex_str);
-}
+#include "ft_printf.h"
 
 int	ft_ptr_to_hex(void *str)
 {
@@ -56,21 +19,25 @@ int	ft_ptr_to_hex(void *str)
 	char				*hex_str;
 
 	if (!str)
-		return (0);
+	{
+		ft_putstr("0x0");
+		return (3);
+	}
 	hex_len = get_hex_len((unsigned long long)str);
 	hex_str = malloc((hex_len + 1) * sizeof(char));
 	if (!hex_str)
 		return (0);
 	ptr_val = (unsigned long long)str;
-	convert_to_hex(hex_len, ptr_val, hex_str);
-	ft_putstr("Ox");
+	conv_hex_low(hex_len, ptr_val, hex_str);
+	ft_putstr("0x");
 	ft_putstr(hex_str);
 	free(hex_str);
-	return (hex_len);
+	return (hex_len + 2);
 }
 
 /* int main()
 {
 	char *str = "Hello World";
 	ft_ptr_to_hex(str);
+	printf("hex=%p\n", str);
 } */

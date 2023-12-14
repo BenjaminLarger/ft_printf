@@ -6,44 +6,28 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:44:09 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 15:09:18 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:24:22 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_len_int(int n)
-{
-	int	count;
-
-	count = 0;
-	if (n < 0)
-	{
-		n = -n;
-		count++;
-	}
-	while (n > 0)
-	{
-		n = n / 10;
-		count++;
-	}
-	return (count);
-}
-
-int	ft_putnbr_dec(float n)
+int	ft_putnbr_dec(double n)
 {
 	int		integer_part;
 	float	decimal_part;
 	int		round_decimal;
 	int		len;
 
-	len = ft_len_int((int)ft_len_int);
-	if (n < 0)
+	len = ft_len_int((int)n);
+	if (n == 2147483647)
+		return (ft_putstr("2147483647"), 10);
+	if (n < 0 && n != -2147483648)
 	{
 		ft_putchar('-');
 		n = n * -1;
 	}
-	integer_part = (int)n;
+	integer_part = (long long int)n;
 	ft_putnbr(integer_part);
 	decimal_part = n - integer_part;
 	round_decimal = (int)(decimal_part * 10 + 0.5);
@@ -56,7 +40,9 @@ int	ft_putnbr_dec(float n)
 	return (len);
 }
 
-/* int main()
+/*  int	main()
 {
-	ft_putnbr_dec(-0.35);
+//	char *string = "ahhahah";
+	ft_printf("%d\n",-167499210);
+	printf("%d",-167499210);
 } */

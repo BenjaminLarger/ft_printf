@@ -6,30 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:23:15 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 15:12:27 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:38:00 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_ft_printf.h"
-
-/* int	count_par(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i] != 34)
-	{
-		if (str[i] == '%')
-		{
-			count++;
-			i++;
-		}
-		i++;
-	}
-	return (count);
-} */
+#include "ft_printf.h"
 
 int	is_valid(char *str)
 {
@@ -43,7 +24,7 @@ int	is_valid(char *str)
 	return (1);
 }
 
-int	ft_printf(char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	int		i;
 	int		len;
@@ -55,7 +36,9 @@ int	ft_printf(char *str, ...)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
-			len += input_type(str[i++], args);
+		{
+			len += input_type(str[++i], args);
+		}
 		else
 		{
 			ft_putchar(str[i]);
@@ -66,3 +49,9 @@ int	ft_printf(char *str, ...)
 	va_end(args);
 	return (len);
 }
+
+/*  int	main()
+{
+	ft_printf("%u\n", 2424939277);
+	printf("%ld\n", 2424939277);
+} */

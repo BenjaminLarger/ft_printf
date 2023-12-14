@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"lib_ft_printf.h": "c"
+		"lib_ft_printf.h": "c",
+		"sstream": "c",
+		"ft_printf.h": "c",
+		"limits.h": "c"
 	}
 }

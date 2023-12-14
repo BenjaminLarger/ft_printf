@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_ft_printf.h                                    :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:46:35 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 15:16:20 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:31:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_FT_PRINTF_H
-# define LIB_FT_PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <limits.h>
 # include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -19,18 +20,18 @@
 # include <stdarg.h>
 
 //Functions in order
-int	ft_printf(char *str, ...);
-int	input_type(char c, va_list input);
-int	ft_putchar(int c);
-int	ft_putstr(char *s);
-int	ft_ptr_to_hex(void *str);
-int	ft_putnbr_dec(float n);
-int	ft_putnbr(int n);
-int	ft_putnbr_dec_unsigned(float n);
-int	ft_print_hex_low(unsigned long long decimal);
-int	ft_print_hex_up(unsigned long long decimal);
+int		ft_printf(const char *str, ...);
+int		input_type(const char c, va_list input);
+int		ft_putchar(int c);
+int		ft_putstr(char *s);
+int		ft_ptr_to_hex(void *str);
+int		ft_putnbr_dec(double n);
+int		ft_putnbr(int n);
+int		ft_putnbr_dec_unsigned(double n);
+int		ft_print_hex_low(unsigned int decimal);
+int		ft_print_hex_up(unsigned int decimal);
 //Utils
-int	ft_len_int(int n);
-int	get_hex_len(unsigned long long str);
-
+int		ft_len_int(int n);
+int		get_hex_len(unsigned long str);
+char	*conv_hex_low(int hex_len, unsigned long ptr_val, char *hex_str);
 #endif

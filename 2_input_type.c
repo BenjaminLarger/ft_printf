@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:06:56 by blarger           #+#    #+#             */
-/*   Updated: 2023/12/13 15:09:21 by blarger          ###   ########.fr       */
+/*   Updated: 2023/12/14 09:51:01 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_ft_printf.h"
+#include "ft_printf.h"
 
-int	input_type(char c, va_list input)
+int	input_type(const char c, va_list input)
 {
 	if (c == 'c')
 		return (ft_putchar(va_arg(input, int)));
