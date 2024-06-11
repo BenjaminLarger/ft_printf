@@ -20,3 +20,4 @@ To get started with `ft_printf`, clone the repository and compile the library us
 git clone https://github.com/BenjaminLarger/ft_printf.git
 cd ft_printf
 make
+./ft_printf
